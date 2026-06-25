@@ -1,0 +1,33 @@
+{
+  "name": "temp-final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bddgen": "npx bddgen",
+    "test": "npx bddgen && playwright test",
+    "test:smoke": "npx bddgen && GREP_PATTERN='@smoke' playwright test",
+    "test:regression": "npx bddgen && GREP_PATTERN='@regression' playwright test",
+    "test:all": "npx bddgen && GREP_PATTERN='@all' playwright test",
+    "test:smoke:headed": "npx bddgen && GREP_PATTERN='@smoke' playwright test --headed",
+    "test:regression:headed": "npx bddgen && GREP_PATTERN='@regression' playwright test --headed",
+    "test:all:headed": "npx bddgen && GREP_PATTERN='@all' playwright test --headed",
+    "test:debug": "npx bddgen && playwright test --debug",
+    "test:headed": "npx bddgen && playwright test --headed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/node": "^25.9.3",
+    "dotenv": "^17.4.2",
+    "playwright-bdd": "^9.2.0",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@slack/webhook": "^7.0.9",
+    "mysql2": "^3.22.5"
+  }
+}
