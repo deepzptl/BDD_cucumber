@@ -14,8 +14,12 @@ export class LoginPage extends BasePage {
     await this.page.getByRole('checkbox', { name: 'Remember me' }).check();
     this.logStep('Submitting login');
     await this.page.getByRole('button', { name: 'Sign In' }).click();
-    await this.waitForNetwork();
-    await this.page.waitForTimeout(3000);
+
+    await Promise.race([
+      this.waitForNetwork(),
+      this.page.waitForURL(/.*\//, { timeout: 30000 }),
+    ]);
+    await this.page.waitForLoadState('domcontentloaded');
     this.logStep('Login completed');
   }
 }

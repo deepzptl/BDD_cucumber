@@ -5,11 +5,14 @@ export class FlightListingPage extends BasePage {
   async filterAndSelect() {
     this.logStep('Waiting for flight results');
     await this.waitForDom();
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {});
+
     this.logStep('Applying the 2-stop filter');
-    await this.page.locator('span', { hasText: '2 Stop' }).dispatchEvent('click');
-    await this.page.waitForTimeout(3000);
-    
+    const twoStopFilter = this.page.locator('span', { hasText: '2 Stop' });
+    await twoStopFilter.waitFor({ state: 'visible', timeout: 10000 });
+    await twoStopFilter.dispatchEvent('click');
+    await this.page.waitForTimeout(1000);
+
     const slider = this.page.locator('.rc-slider').first();
     const box = await slider.boundingBox();
     if (box) {
@@ -18,20 +21,26 @@ export class FlightListingPage extends BasePage {
       await this.page.mouse.down();
       await this.page.mouse.move(box.x + box.width * 0.3, box.y + box.height / 2, { steps: 20 });
       await this.page.mouse.up();
+      await this.page.waitForTimeout(500);
     }
-    
-    await this.page.waitForTimeout(3000);
-    await this.waitForDom();
-    await this.page.waitForTimeout(3000);
+
     this.logStep('Filtering by Air Canada');
-    await this.page.locator('[id="Air Canada"]').click();
+    const airCanadaFilter = this.page.locator('[id="Air Canada"]');
+    await airCanadaFilter.waitFor({ state: 'visible', timeout: 10000 }).catch(() => {});
+    await airCanadaFilter.click({ force: true });
     await this.waitForNetwork();
-    
+
     this.logStep('Sorting by earliest arrival');
-    await this.page.getByRole('button', { name: 'Sort by : Price (low to high)' }).click();
-    await this.page.locator('p').filter({ hasText: 'Arrival (earliest)' }).last().click({force:true});
+    const sortButton = this.page.getByRole('button', { name: 'Sort by : Price (low to high)' });
+    await sortButton.click();
+    await this.page.waitForTimeout(300);
+    await this.page.locator('p').filter({ hasText: 'Arrival (earliest)' }).last().click({ force: true });
+    await this.page.waitForTimeout(500);
+
     this.logStep('Selecting the first matching flight');
-    await this.page.locator(`div.flex > section.flex > div.flex`).first().click();
+    const firstFlight = this.page.locator(`div.flex > section.flex > div.flex`).first();
+    await firstFlight.waitFor({ state: 'visible', timeout: 15000 });
+    await firstFlight.click();
     this.logStep('Flight selected');
   }
 }

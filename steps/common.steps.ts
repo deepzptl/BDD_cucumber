@@ -47,9 +47,20 @@ export function getSharedPage(key: string): Page | undefined {
   return sharedPages[key];
 }
 
-Given('I am logged into the application', async ({ loginPage }) => {
-  await loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
-  await loginPage.saveCurrentState('login-state.json');
+Given('I am logged into the application', async ({ loginPage, page }) => {
+  // Check if already authenticated via storageState from setup
+  await page.goto('/');
+  const signInLink = page.getByRole('link', { name: 'Sign in or join using your' });
+  const isLoggedOut = await signInLink.isVisible({ timeout: 5000 }).catch(() => false);
+
+  if (isLoggedOut) {
+    // Not authenticated - perform login
+    await loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
+    await loginPage.saveCurrentState('login-state.json');
+  } else {
+    // Already authenticated via storageState
+    console.log('[STAGE] Already authenticated via storageState');
+  }
 });
 
 Given('I navigate to the flight search page', async ({ homePage }) => {
