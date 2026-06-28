@@ -1,4 +1,4 @@
-// Generated from: features/flight.feature
+// Generated from: features\flight.feature
 import { test } from "../../steps/common.steps.ts";
 
 test.describe('Flight Booking Flow', () => {
@@ -20,7 +20,7 @@ test.describe('Flight Booking Flow', () => {
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('features/flight.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('features\\flight.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 

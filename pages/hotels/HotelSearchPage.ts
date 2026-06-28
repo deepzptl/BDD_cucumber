@@ -6,8 +6,15 @@ export class HotelSearchPage extends BasePage {
     await expect(this.page).toHaveURL(/.*hotel\/search/);
     await this.page.getByRole('textbox', { name: 'What hotel you looking for?' }).fill(data.location);
     await this.page.waitForTimeout(2000);
-    
-    await this.page.locator('div').filter({ hasText: new RegExp(`^${data.locationSelect}$`) }).first().click();
+    // Try exact match first, fallback to partial text match
+    const exactMatch = this.page.locator('div').filter({ hasText: new RegExp(`^${data.locationSelect}$`) }).first();
+    if (await exactMatch.isVisible({ timeout: 5000 }).catch(() => false)) {
+      await exactMatch.click();
+    } else {
+      const partialMatch = this.page.getByText(data.locationSelect).first();
+      await partialMatch.waitFor({ state: 'visible', timeout: 10000 });
+      await partialMatch.click();
+    }
     await this.page.waitForTimeout(1500);
     
     await this.page.getByRole('button', { name: 'showing selected date' }).click();

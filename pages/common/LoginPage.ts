@@ -15,11 +15,9 @@ export class LoginPage extends BasePage {
     this.logStep('Submitting login');
     await this.page.getByRole('button', { name: 'Sign In' }).click();
 
-    await Promise.race([
-      this.waitForNetwork(),
-      this.page.waitForURL(/.*\//, { timeout: 30000 }),
-    ]);
-    await this.page.waitForLoadState('domcontentloaded');
+    // Wait for redirect away from the login page
+    await this.page.waitForURL(url => !url.pathname.includes('login'), { timeout: 30000 });
+    await this.page.waitForLoadState('networkidle');
     this.logStep('Login completed');
   }
 }

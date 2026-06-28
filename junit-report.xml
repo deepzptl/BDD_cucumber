@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="6" failures="0" skipped="2" errors="0" time="326.67913">
-<testsuite name="../tests/setup/auth.setup.ts" timestamp="2026-06-25T05:52:37.580Z" hostname="setup" tests="1" failures="0" skipped="0" time="6.834" errors="0">
-<testcase name="Authenticate and Save State @smoke @regression @all" classname="../tests/setup/auth.setup.ts" time="6.834">
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="139.117875">
+<testsuite name="..\tests\setup\auth.setup.ts" timestamp="2026-06-28T03:28:33.165Z" hostname="setup" tests="1" failures="0" skipped="0" time="11.79" errors="0">
+<testcase name="Authenticate and Save State @smoke @regression @all" classname="..\tests\setup\auth.setup.ts" time="11.79">
 <system-out>
 <![CDATA[[STAGE] [LoginPage] Opening the application
 [STAGE] [LoginPage] Opening the login page
@@ -12,11 +12,11 @@
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="features/flight.feature.spec.js" timestamp="2026-06-25T05:52:37.580Z" hostname="chromium" tests="1" failures="0" skipped="0" time="103.611" errors="0">
-<testcase name="Flight Booking Flow › End-to-End Flight Booking Flow" classname="features/flight.feature.spec.js" time="103.611">
+<testsuite name="features\flight.feature.spec.js" timestamp="2026-06-28T03:28:33.165Z" hostname="chromium" tests="1" failures="0" skipped="0" time="99.901" errors="0">
+<testcase name="Flight Booking Flow › End-to-End Flight Booking Flow" classname="features\flight.feature.spec.js" time="99.901">
 <system-out>
 <![CDATA[◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
-◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
 [STAGE] Already authenticated via storageState
 [STAGE] [HomePage] Navigating to flight search
 [STAGE] [HomePage] Flight search page opened
@@ -24,15 +24,14 @@
 [STAGE] [FlightSearchPage] Selecting departure airport
 [STAGE] [FlightSearchPage] Selecting destination airport
 [STAGE] [FlightSearchPage] Selecting departure date
-[STAGE] [FlightSearchPage] Selecting calendar date: Friday, July 10th, 2026
-[STAGE] [FlightSearchPage] Calendar date selected: Friday, July 10th, 2026
+[STAGE] [FlightSearchPage] Selecting calendar date: Monday, July 13th, 2026
+[STAGE] [FlightSearchPage] Calendar date selected: Monday, July 13th, 2026
 [STAGE] [FlightSearchPage] Selecting cabin class and passengers
 [STAGE] [FlightSearchPage] Submitting flight search
 [STAGE] [FlightSearchPage] Flight search submitted
 [STAGE] [FlightSearchPage] Browser state saved to .auth/flight-searched-state.json
 [STAGE] [FlightListingPage] Waiting for flight results
 [STAGE] [FlightListingPage] Applying the 2-stop filter
-[STAGE] [FlightListingPage] Adjusting the price slider
 [STAGE] [FlightListingPage] Filtering by Air Canada
 [STAGE] [FlightListingPage] Sorting by earliest arrival
 [STAGE] [FlightListingPage] Selecting the first matching flight
@@ -47,54 +46,52 @@ Found available seat in Flight 1
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="features/hotel.feature.spec.js" timestamp="2026-06-25T05:52:37.580Z" hostname="chromium" tests="3" failures="0" skipped="1" time="138.58" errors="0">
-<testcase name="Hotel Booking Flow › End-to-End Hotel Booking Flow with MySQL Data › Example #1" classname="features/hotel.feature.spec.js" time="84.402">
+<testsuite name="features\hotel.feature.spec.js" timestamp="2026-06-28T03:28:33.165Z" hostname="chromium" tests="2" failures="0" skipped="0" time="121.165" errors="0">
+<testcase name="Hotel Booking Flow › End-to-End Hotel Booking Flow with MySQL Data › Example #1" classname="features\hotel.feature.spec.js" time="69.177">
 <system-out>
-<![CDATA[◇ injected env (0) from .env // tip: ◈ secrets for agents [www.dotenvx.com]
-◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
-[STAGE] [LoginPage] Opening the application
-[STAGE] [LoginPage] Opening the login page
-[STAGE] [LoginPage] Entering login credentials
-[STAGE] [LoginPage] Submitting login
-[STAGE] [LoginPage] Login completed
-[STAGE] [LoginPage] Browser state saved to .auth/login-state.json
+<![CDATA[◇ injected env (0) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[STAGE] Already authenticated via storageState
 [STAGE] [HomePage] Navigating to hotel search
 [STAGE] [HomePage] Hotel search page opened
-[STAGE] [HotelSearchPage] Selecting calendar date: Friday, July 10th, 2026
-[STAGE] [HotelSearchPage] Calendar date selected: Friday, July 10th, 2026
-[STAGE] [HotelSearchPage] Selecting calendar date: Saturday, July 11th, 2026
-[STAGE] [HotelSearchPage] Calendar date selected: Saturday, July 11th, 2026
+[STAGE] [HotelSearchPage] Selecting calendar date: Monday, July 13th, 2026
+[STAGE] [HotelSearchPage] Calendar date selected: Monday, July 13th, 2026
+[STAGE] [HotelSearchPage] Selecting calendar date: Tuesday, July 14th, 2026
+[STAGE] [HotelSearchPage] Calendar date selected: Tuesday, July 14th, 2026
 [STAGE] [HotelSearchPage] Browser state saved to .auth/hotel-searched-state.json
 ]]>
 </system-out>
 </testcase>
-<testcase name="Hotel Booking Flow › End-to-End Hotel Booking Flow with MySQL Data › Example #2" classname="features/hotel.feature.spec.js" time="54.178">
+<testcase name="Hotel Booking Flow › End-to-End Hotel Booking Flow with MySQL Data › Example #2" classname="features\hotel.feature.spec.js" time="51.988">
 <system-out>
-<![CDATA[[STAGE] [LoginPage] Opening the application
-[STAGE] [LoginPage] Opening the login page
-[STAGE] [LoginPage] Entering login credentials
-[STAGE] [LoginPage] Submitting login
-[STAGE] [LoginPage] Login completed
-[STAGE] [LoginPage] Browser state saved to .auth/login-state.json
+<![CDATA[[STAGE] Already authenticated via storageState
 [STAGE] [HomePage] Navigating to hotel search
 [STAGE] [HomePage] Hotel search page opened
-[STAGE] [HotelSearchPage] Selecting calendar date: Wednesday, July 15th, 2026
-[STAGE] [HotelSearchPage] Calendar date selected: Wednesday, July 15th, 2026
-[STAGE] [HotelSearchPage] Selecting calendar date: Friday, July 17th, 2026
-[STAGE] [HotelSearchPage] Calendar date selected: Friday, July 17th, 2026
+[STAGE] [HotelSearchPage] Selecting calendar date: Saturday, July 18th, 2026
+[STAGE] [HotelSearchPage] Calendar date selected: Saturday, July 18th, 2026
+[STAGE] [HotelSearchPage] Selecting calendar date: Monday, July 20th, 2026
+[STAGE] [HotelSearchPage] Calendar date selected: Monday, July 20th, 2026
 [STAGE] [HotelSearchPage] Browser state saved to .auth/hotel-searched-state.json
 ]]>
 </system-out>
-</testcase>
-<testcase name="Hotel Booking Flow › End-to-End Hotel Booking Flow with MySQL Data › Example #3" classname="features/hotel.feature.spec.js">
-<skipped>
-</skipped>
 </testcase>
 </testsuite>
-<testsuite name="features/trip.feature.spec.js" timestamp="2026-06-25T05:52:37.580Z" hostname="chromium" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="Trip Planner Flow › Create Trip Planner Flow" classname="features/trip.feature.spec.js">
-<skipped>
-</skipped>
+<testsuite name="features\trip.feature.spec.js" timestamp="2026-06-28T03:28:33.165Z" hostname="chromium" tests="1" failures="0" skipped="0" time="62.688" errors="0">
+<testcase name="Trip Planner Flow › Create Trip Planner Flow" classname="features\trip.feature.spec.js" time="62.688">
+<system-out>
+<![CDATA[◇ injected env (0) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+[STAGE] Already authenticated via storageState
+[STAGE] [HomePage] Opening saved trips
+[STAGE] [HomePage] Saved trips page opened in a new tab
+Old trip deleted.
+[STAGE] [TripSearchPage] Selecting calendar date: Monday, July 13th, 2026
+[STAGE] [TripSearchPage] Calendar date selected: Monday, July 13th, 2026
+[STAGE] [TripSearchPage] Selecting calendar date: Tuesday, July 14th, 2026
+[STAGE] [TripSearchPage] Calendar date selected: Tuesday, July 14th, 2026
+[STAGE] [TripPlanPage] Browser state saved to .auth/trip-planned-state.json
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

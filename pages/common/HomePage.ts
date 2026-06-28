@@ -22,10 +22,25 @@ export class HomePage extends BasePage {
 
   async openSavedTrips(): Promise<Page> {
     this.logStep('Opening saved trips');
-    await this.page.goto('/');
-    const pagePromise = this.page.waitForEvent('popup');
-    await this.page.getByRole('link', { name: 'Tripplanner saved trips' }).click();
-    const savedTripsPage = await pagePromise;
+    // The login step leaves us on the home page already logged in.
+    // The 'Tripplanner saved trips' link is on this page; scroll to find it.
+    await this.page.waitForLoadState('networkidle');
+
+    const tripsLink = this.page.getByRole('link', { name: 'Tripplanner saved trips' });
+
+    // Scroll down to make the link visible if it's below the fold
+    for (let i = 0; i < 10; i++) {
+      if (await tripsLink.isVisible().catch(() => false)) break;
+      await this.page.mouse.wheel(0, 500);
+      await this.page.waitForTimeout(500);
+    }
+
+    const [savedTripsPage] = await Promise.all([
+      this.page.context().waitForEvent('page', { timeout: 15000 }),
+      tripsLink.click(),
+    ]);
+
+    await savedTripsPage.waitForLoadState('domcontentloaded');
     this.logStep('Saved trips page opened in a new tab');
     return savedTripsPage;
   }

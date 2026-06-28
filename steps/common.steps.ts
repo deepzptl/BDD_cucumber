@@ -48,17 +48,21 @@ export function getSharedPage(key: string): Page | undefined {
 }
 
 Given('I am logged into the application', async ({ loginPage, page }) => {
-  // Check if already authenticated via storageState from setup
   await page.goto('/');
-  const signInLink = page.getByRole('link', { name: 'Sign in or join using your' });
-  const isLoggedOut = await signInLink.isVisible({ timeout: 5000 }).catch(() => false);
+  await page.waitForLoadState('networkidle');
 
-  if (isLoggedOut) {
-    // Not authenticated - perform login
+  // Wait up to 5s for the sign-in link to appear.
+  // If it appears → storageState didn't authenticate → perform login.
+  // If 5s pass without it appearing → storageState worked → skip login.
+  const signInLink = page.getByRole('link', { name: 'Sign in or join using your' });
+  const needsLogin = await signInLink.waitFor({ state: 'visible', timeout: 5000 })
+    .then(() => true)
+    .catch(() => false);
+
+  if (needsLogin) {
     await loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
     await loginPage.saveCurrentState('login-state.json');
   } else {
-    // Already authenticated via storageState
     console.log('[STAGE] Already authenticated via storageState');
   }
 });

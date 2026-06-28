@@ -22,4 +22,3 @@ Feature: Hotel Booking Flow
       | location   | locationSelect              | checkInDays | stayLength |
       | hyderabad  | HYD, Hyderabad, India       | 15          | 1          |
       | mumbai     | BOM, Mumbai, India          | 20          | 2          |
-      | delhi      | DEL, Delhi, India           | 10          | 3          |

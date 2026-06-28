@@ -1,4 +1,4 @@
-// Generated from: features/trip.feature
+// Generated from: features\trip.feature
 import { test } from "../../steps/common.steps.ts";
 
 test.describe('Trip Planner Flow', () => {
@@ -19,7 +19,7 @@ test.describe('Trip Planner Flow', () => {
 
 test.use({
   $test: [({}, use) => use(test), { scope: 'test', box: true }],
-  $uri: [({}, use) => use('features/trip.feature'), { scope: 'test', box: true }],
+  $uri: [({}, use) => use('features\\trip.feature'), { scope: 'test', box: true }],
   $bddFileData: [({}, use) => use(bddFileData), { scope: "test", box: true }],
 });
 
